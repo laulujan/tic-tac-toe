@@ -1,2 +1,2 @@
 # tic-tac-toe
-TOP Tic Tac Toe Game
+Tic Tac Toe Game with vanilla JS for TOP
