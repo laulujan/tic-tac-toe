@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <header>
+      <h1>Tic Tac Toe</h1>
+    </header>
+    <main>
+      <div id="start">
+        <button id="play-btn">Play</button>
+        <form>
+          <label for="one">1 player</label>
+          <input type="radio" id="one" value="1" name="players"/>
+          <label for="two">2 players</label>
+          <input type="radio" id="two" value="2" name="players" />
+          <button class="start-btn">OK</button>
+        </form>
+      </div>
+      <div id="info-one">
+        <form>
+          <input type="text" id="name" placeholder="Enter your name"/>
+          <p>Choose</p>
+          <input type="radio" id="one-x" value="x" name="options" />
+          <label  for="x">X</label>
+          <input type="radio" id="one-o" value="o" name="options" />
+          <label  for="o">O</label>
+          <button class="start-btn">Start</button>
+        </form>
+      </div>
+      <div id="info-two">
+          <form>
+              <label>Player X</label>
+              <input type="text" id="x-name" placeholder="Enter your name" />
+              <label>Player O</label>
+              <input type="text" id="o-name" placeholder="Enter your name"/>
+              <button class="start-btn">Start</button>
+          </form>
+      </div>
+      <div class="game">
+          <div class="score">
+              <h3>X score</h3>
+          </div>
+          <div class="grid">
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+              <div class="cell"></div>
+          </div>
+          <div class="score">
+              <h3>O score</h3>
+          </div>
+      </div>
+    </main>
+  </body>
+</html>

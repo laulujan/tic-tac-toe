@@ -1,0 +1,20 @@
+:root {
+    --grid-cols: 3;
+    --grid-rows: 3;
+}
+
+.grid{
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    border: 5px solid rgba(238, 238, 238, 0.788);
+    display: grid;
+     grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-cols), 1fr); 
+}
+
+.cell {
+    border: 1px solid rgba(238, 238, 238, 0.788);
+    text-align: center;
+    background-color: white;
+}
