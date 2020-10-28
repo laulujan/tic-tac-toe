@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
     <title>Tic Tac Toe</title>
   </head>
   <body>
@@ -23,7 +24,6 @@
           <label  for="x">X</label>
           <input type="radio" id="one-o" value="o" name="options" />
           <label  for="o">O</label>
-          <button class="start-btn">Start</button>
         </form>
       </div>
       <div id="info-two">
@@ -32,23 +32,25 @@
               <input type="text" id="x-name" placeholder="Enter your name" />
               <label>Player O</label>
               <input type="text" id="o-name" placeholder="Enter your name"/>
-              <button class="start-btn">Start</button>
           </form>
+      </div>
+      <div>
+        <button id="start-btn">Start</button>
       </div>
       <div class="game">
           <div class="score">
               <h3>X score</h3>
           </div>
-          <div class="grid">
-              <div class="cell bottom right" data-cell="0"></div>
-              <div class="cell bottom right" data-cell="1"></div>
-              <div class="cell bottom" data-cell="2"></div>
-              <div class="cell bottom right" data-cell="3"></div>
-              <div class="cell bottom right" data-cell="4"></div>
-              <div class="cell bottom" data-cell="5"></div>
-              <div class="cell right" data-cell="6"></div>
-              <div class="cell right" data-cell="7"></div>
-              <div class="cell" data-cell="8"></div>
+          <div id="grid">
+              <div class="cell bottom right" id="0"></div>
+              <div class="cell bottom right" id="1"></div>
+              <div class="cell bottom" id="2"></div>
+              <div class="cell bottom right" id="3"></div>
+              <div class="cell bottom right" id="4"></div>
+              <div class="cell bottom" id="5"></div>
+              <div class="cell right" id="6"></div>
+              <div class="cell right" id="7"></div>
+              <div class="cell" id="8"></div>
           </div>
           <div class="score">
               <h3>O score</h3>
