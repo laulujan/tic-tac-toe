@@ -88,10 +88,24 @@ const displayController = (function(){
     let player1 = null;
     let player2 = null;
     const start = document.getElementById('start-btn');
+    const radios = document.getElementsByName('marks');
+
+
+    let singlePlayerName = "";
+    let singlePlayerMark = "";
+
+    radios.forEach(r => {r.addEventListener('click', function(event){
+        event.target.setAttribute("checked", "checked");
+        singlePlayerMark = event.target.value;
+        console.log(singlePlayerMark)
+    })})
+
     start.addEventListener('click', function(event){
         //sacar name y mark del event target
-        player1 = Player(name, mark)
-        player2 = Player(name, mark)
+       singlePlayerName = document.getElementById("name").value;
+       singlePlayerMark = radios.checked;
+        player1 = Player(singlePlayerName, singlePlayerMark);
+        //player2 = Player(name, mark)
     })
 })();
 
