@@ -55,6 +55,7 @@ const gameBoard = (function(){
 })();
 
 const Player = (name, mark, isAI) => {
+    return {name, mark, isAI}
 
 } 
 
@@ -97,14 +98,14 @@ const displayController = (function(){
     radios.forEach(r => {r.addEventListener('click', function(event){
         event.target.setAttribute("checked", "checked");
         singlePlayerMark = event.target.value;
-        console.log(singlePlayerMark)
-    })})
+        singlePlayerName = document.getElementById("name").value;
+    })});
 
     start.addEventListener('click', function(event){
         //sacar name y mark del event target
-       singlePlayerName = document.getElementById("name").value;
-       singlePlayerMark = radios.checked;
-        player1 = Player(singlePlayerName, singlePlayerMark);
+        event.preventDefault()
+        player1 = Player(singlePlayerName, singlePlayerMark, false);
+        console.log(player1)
         //player2 = Player(name, mark)
     })
 })();
