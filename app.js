@@ -4,6 +4,7 @@ const gameBoard = (function () {
   let isOver = false;
   let isTie = false;
   let markWinner = "";
+  let status;
 
   const pickCell = function (mark, index) {
     console.log();
@@ -15,7 +16,7 @@ const gameBoard = (function () {
     }
     draw(mark, index);
     board[index] = mark;
-    let status = gameStatus();
+    status = gameStatus(mark, index);
     if (status.isOver == false) {
       return;
     }
@@ -36,7 +37,7 @@ const gameBoard = (function () {
     const checkEmptyCell = () => {
         if(board.every((ind) => ind != '')){
             //aqui va funcion para saber quien gano
-            return
+            return   
         }
         rndm = getRandomNum()
         if(board[rndm] != ''){
@@ -53,8 +54,27 @@ const gameBoard = (function () {
     console.log(board);
   };
 
-  const gameStatus = function () {
+  const gameStatus = function (mark, index) {
     //agregar los casos en que se termina el juego, sacar el winner, empate etc.
+    let winningCombo;
+    const winningCases = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [2, 4, 6]
+    ];
+    
+     winningCombo = winningCases.filter(x => x.includes(index)).filter(x => x.every(elem => elem == mark));
+     if(winningCombo.length != 0 ){
+       return {
+         isOver: true,
+         winnerMark: mark
+       }
+     }
+    
     return {
       isOver: false,
       winnerMark: "",
