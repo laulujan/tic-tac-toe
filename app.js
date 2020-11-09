@@ -7,7 +7,6 @@ const gameBoard = (function () {
   let status;
 
   const pickCell = function (mark, index) {
-    console.log();
     if (isOver == true) {
       return;
     }
@@ -31,21 +30,21 @@ const gameBoard = (function () {
     const getRandomNum = () => {
       const min = Math.ceil(0);
       const max = Math.floor(board.length - 1);
-      return  Math.floor(Math.random() * (max - min + 1)) + min;
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     const checkEmptyCell = () => {
-        if(board.every((ind) => ind != '')){
-            //aqui va funcion para saber quien gano
-            return   
-        }
-        rndm = getRandomNum()
-        if(board[rndm] != ''){
-            checkEmptyCell();
-        }
-        
-        return rndm
-    }
+      if (board.every((ind) => ind != "")) {
+        //aqui va funcion para saber quien gano
+        return;
+      }
+      rndm = getRandomNum();
+      if (board[rndm] != "") {
+        checkEmptyCell();
+      }
+
+      return rndm;
+    };
     checkEmptyCell();
 
     console.log({ rndm });
@@ -64,17 +63,28 @@ const gameBoard = (function () {
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      [2, 4, 6]
+      [2, 4, 6],
     ];
-    
-     winningCombo = winningCases.filter(x => x.includes(index)).filter(x => x.every(elem => elem == mark));
-     if(winningCombo.length != 0 ){
-       return {
-         isOver: true,
-         winnerMark: mark
-       }
-     }
-    
+    //checar si el contenido en board es igual a mark en los indices del arreglo filtrado
+    winningCombo = winningCases.filter((x) => x.includes(index));
+    const areEquals = (elem) => elem == mark;
+
+    console.log({ winningCombo });
+    console.log({ board });
+    let arr = [];
+    winningCombo.forEach((conv) => {
+      arr.push(board[conv[0]]);
+      arr.push(board[conv[1]]);
+      arr.push(board[conv[2]]);
+    });
+    if(arr.every(areEquals)){
+      return{
+        isOver: true,
+        winnerMark: mark,
+        tie: false
+      }
+    }
+
     return {
       isOver: false,
       winnerMark: "",
@@ -104,7 +114,7 @@ const displayController = (function () {
     } else {
       mark = player2.mark;
     }
-    gameBoard.pickCell(mark, event.target.id);
+    gameBoard.pickCell(mark, parseInt(event.target.id));
     if (nextPlayer == 1) {
       if (player2.isAI) {
         gameBoard.robotPickCell(player2.mark);
