@@ -71,23 +71,24 @@ const gameBoard = (function () {
 
     console.log({ winningCombo });
     console.log({ board });
-    let arr = [];
+
+    let isGameOver = false;
+    let returnMark = "";
     winningCombo.forEach((conv) => {
+      let arr = [];
       arr.push(board[conv[0]]);
       arr.push(board[conv[1]]);
       arr.push(board[conv[2]]);
-    });
-    if(arr.every(areEquals)){
-      return{
-        isOver: true,
-        winnerMark: mark,
-        tie: false
+
+      if (arr.every(areEquals)) {
+        isGameOver = true;
+        returnMark = mark;
       }
-    }
+    });
 
     return {
-      isOver: false,
-      winnerMark: "",
+      isOver: isGameOver,
+      winnerMark: returnMark,
       tie: false,
     };
   };
