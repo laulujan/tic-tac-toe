@@ -22,6 +22,8 @@ const gameBoard = (function () {
     isOver = true;
     isTie = status.isTie;
     markWinner = status.winnerMark;
+    // darwn line
+    drawWinner(status.winningCombination);
   };
 
   const robotPickCell = function (mark) {
@@ -64,6 +66,7 @@ const gameBoard = (function () {
       [1, 4, 7],
       [2, 5, 8],
       [2, 4, 6],
+      [0, 4, 8]
     ];
     //checar si el contenido en board es igual a mark en los indices del arreglo filtrado
     winningCombo = winningCases.filter((x) => x.includes(index));
@@ -74,6 +77,7 @@ const gameBoard = (function () {
 
     let isGameOver = false;
     let returnMark = "";
+    let winningCombination;
     winningCombo.forEach((conv) => {
       let arr = [];
       arr.push(board[conv[0]]);
@@ -81,12 +85,14 @@ const gameBoard = (function () {
       arr.push(board[conv[2]]);
 
       if (arr.every(areEquals)) {
+        winningCombination = conv;
         isGameOver = true;
         returnMark = mark;
       }
     });
 
     return {
+      winningCombination: winningCombination,
       isOver: isGameOver,
       winnerMark: returnMark,
       tie: false,
@@ -96,6 +102,11 @@ const gameBoard = (function () {
   const draw = function (mark, index) {
     document.getElementById(index).textContent = mark;
   };
+
+  const drawWinner = (arr) => {
+    arr.forEach(element => document.getElementById(element.toString()).classList.add('winner'))
+  }
+  
   return {
     pickCell,
     robotPickCell,

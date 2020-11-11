@@ -20,3 +20,7 @@
 .right{
     border-right: 1px solid black;
 }
+
+.winner{
+    color: red;
+}
