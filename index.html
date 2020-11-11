@@ -20,9 +20,21 @@
         <div id="info-one">
           <input type="text" id="name" placeholder="Enter your name" required />
           <p>Choose</p>
-          <input type="radio" id="one-x" value="x" name="marks" class="radios" />
+          <input
+            type="radio"
+            id="one-x"
+            value="x"
+            name="marks"
+            class="radios"
+          />
           <label for="x">X</label>
-          <input type="radio" id="one-o" value="o" name="marks" class="radios" />
+          <input
+            type="radio"
+            id="one-o"
+            value="o"
+            name="marks"
+            class="radios"
+          />
           <label for="o">O</label>
         </div>
         <div id="info-two">
@@ -33,10 +45,12 @@
         </div>
         <button id="start-btn">Start</button>
       </form>
+      <div id="score" class="no-display">
+        <h3>Game Over!</h3>
+        <p id="legend"></p>
+        <button id="play-again">Play Again</button>
+      </div>
       <div class="game">
-        <div class="score">
-          <h3>X score</h3>
-        </div>
         <div id="grid">
           <div class="cell bottom right" id="0"></div>
           <div class="cell bottom right" id="1"></div>
@@ -47,9 +61,6 @@
           <div class="cell right" id="6"></div>
           <div class="cell right" id="7"></div>
           <div class="cell" id="8"></div>
-        </div>
-        <div class="score">
-          <h3>O score</h3>
         </div>
       </div>
     </main>

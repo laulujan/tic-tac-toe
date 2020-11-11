@@ -6,7 +6,7 @@ const gameBoard = (function () {
   let markWinner = "";
   let status;
 
-  const pickCell = function (mark, index) {
+  const pickCell = function (playerName, mark, index) {
     if (isOver == true) {
       return;
     }
@@ -24,9 +24,10 @@ const gameBoard = (function () {
     markWinner = status.winnerMark;
     // darwn line
     drawWinner(status.winningCombination);
+    showWinner(playerName);
   };
 
-  const robotPickCell = function (mark) {
+  const robotPickCell = function (playerName, mark) {
     //calcular espacios vacios para obtener un index
     let rndm;
     const getRandomNum = () => {
@@ -51,7 +52,7 @@ const gameBoard = (function () {
 
     console.log({ rndm });
     console.log({ mark });
-    pickCell(mark, rndm);
+    pickCell(playerName, mark, rndm);
     console.log(board);
   };
 
@@ -106,6 +107,11 @@ const gameBoard = (function () {
   const drawWinner = (arr) => {
     arr.forEach(element => document.getElementById(element.toString()).classList.add('winner'))
   }
+
+  const showWinner = (str)=> {
+    document.getElementById('legend').textContent = "The winner is " + str;
+    document.getElementById('score').classList.remove('no-display')
+  }
   
   return {
     pickCell,
@@ -123,13 +129,15 @@ const displayController = (function () {
   container.addEventListener("click", function (event) {
     if (nextPlayer == 1) {
       mark = player1.mark;
+      playerName = player1.name;
     } else {
       mark = player2.mark;
+      playerName = player2.name
     }
-    gameBoard.pickCell(mark, parseInt(event.target.id));
+    gameBoard.pickCell(playerName, mark, parseInt(event.target.id));
     if (nextPlayer == 1) {
       if (player2.isAI) {
-        gameBoard.robotPickCell(player2.mark);
+        gameBoard.robotPickCell(player2.name, player2.mark);
       } else {
         nextPlayer = 2;
       }

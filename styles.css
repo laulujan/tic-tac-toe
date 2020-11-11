@@ -24,3 +24,7 @@
 .winner{
     color: red;
 }
+
+.no-display{
+    display: none;
+}
