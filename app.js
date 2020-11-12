@@ -191,4 +191,9 @@ const displayController = (function () {
     player2 = Player("pc", pcPlayerMark, true);
     console.log(player2);
   });
+
+  document.getElementById('play-again').addEventListener('click', function(event){
+    event.preventDefault();
+    window.location.reload();
+  })
 })();
