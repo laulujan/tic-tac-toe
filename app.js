@@ -196,4 +196,15 @@ const displayController = (function () {
     event.preventDefault();
     window.location.reload();
   })
+  document.getElementById("one-player").addEventListener('click', function(event){
+    event.preventDefault();
+    document.getElementById("info-one").classList.remove("no-display");
+    document.getElementById("start-btn").classList.remove("no-display");
+  });
+  document.getElementById("two-players").addEventListener("click", function(event){
+    event.preventDefault();
+    document.getElementById("info-two").classList.remove("no-display");
+    document.getElementById("start-btn").classList.remove("no-display");
+  })
+
 })();
