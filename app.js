@@ -24,11 +24,16 @@ const gameBoard = (function () {
     markWinner = status.winnerMark;
     // darwn line
     drawWinner(status.winningCombination);
+    //add logic if is tie show gameover section is not show winner
+    if(isTie == true){
+      document.getElementById('score').classList.remove('no-display');
+    }
     showWinner(playerName);
   };
 
   const robotPickCell = function (playerName, mark) {
     //calcular espacios vacios para obtener un index
+    checkEmpties();
     let rndm;
     const getRandomNum = () => {
       const min = Math.ceil(0);
@@ -39,7 +44,7 @@ const gameBoard = (function () {
     const checkEmptyCell = () => {
       if (board.every((ind) => ind != "")) {
         //aqui va funcion para saber quien gano
-        return;
+        isTie = true;
       }
       rndm = getRandomNum();
       if (board[rndm] != "") {
@@ -92,11 +97,12 @@ const gameBoard = (function () {
       }
     });
 
+
     return {
       winningCombination: winningCombination,
       isOver: isGameOver,
       winnerMark: returnMark,
-      tie: false,
+      tie: isTie,
     };
   };
 
@@ -111,6 +117,11 @@ const gameBoard = (function () {
   const showWinner = (str)=> {
     document.getElementById('legend').textContent = "The winner is " + str;
     document.getElementById('score').classList.remove('no-display')
+  }
+  const checkEmpties = ()=> {
+    if(board.every(indx => indx != "")){
+      document.getElementById('score').classList.remove('no-display')
+    }
   }
   
   return {
