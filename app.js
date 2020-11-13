@@ -190,8 +190,8 @@ const displayController = (function () {
     console.log(player1);
     player2 = Player("pc", pcPlayerMark, true);
     console.log(player2);
+    document.getElementById("players").classList.add("no-display");
   });
-
   document.getElementById('play-again').addEventListener('click', function(event){
     event.preventDefault();
     window.location.reload();
@@ -205,6 +205,7 @@ const displayController = (function () {
     event.preventDefault();
     document.getElementById("info-two").classList.remove("no-display");
     document.getElementById("start-btn").classList.remove("no-display");
-  })
+  });
+
 
 })();
