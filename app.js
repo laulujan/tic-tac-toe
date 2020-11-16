@@ -25,8 +25,8 @@ const gameBoard = (function () {
     // darwn line
     drawWinner(status.winningCombination);
     //add logic if is tie show gameover section is not show winner
-    if(isTie == true){
-      document.getElementById('score').classList.remove('no-display');
+    if (isTie == true) {
+      document.getElementById("score").classList.remove("no-display");
     }
     showWinner(playerName);
   };
@@ -72,7 +72,7 @@ const gameBoard = (function () {
       [1, 4, 7],
       [2, 5, 8],
       [2, 4, 6],
-      [0, 4, 8]
+      [0, 4, 8],
     ];
     //checar si el contenido en board es igual a mark en los indices del arreglo filtrado
     winningCombo = winningCases.filter((x) => x.includes(index));
@@ -97,7 +97,6 @@ const gameBoard = (function () {
       }
     });
 
-
     return {
       winningCombination: winningCombination,
       isOver: isGameOver,
@@ -111,19 +110,21 @@ const gameBoard = (function () {
   };
 
   const drawWinner = (arr) => {
-    arr.forEach(element => document.getElementById(element.toString()).classList.add('winner'))
-  }
+    arr.forEach((element) =>
+      document.getElementById(element.toString()).classList.add("winner")
+    );
+  };
 
-  const showWinner = (str)=> {
-    document.getElementById('legend').textContent = "The winner is " + str;
-    document.getElementById('score').classList.remove('no-display')
-  }
-  const checkEmpties = ()=> {
-    if(board.every(indx => indx != "")){
-      document.getElementById('score').classList.remove('no-display')
+  const showWinner = (str) => {
+    document.getElementById("legend").textContent = "The winner is " + str;
+    document.getElementById("score").classList.remove("no-display");
+  };
+  const checkEmpties = () => {
+    if (board.every((indx) => indx != "")) {
+      document.getElementById("score").classList.remove("no-display");
     }
-  }
-  
+  };
+
   return {
     pickCell,
     robotPickCell,
@@ -143,7 +144,7 @@ const displayController = (function () {
       playerName = player1.name;
     } else {
       mark = player2.mark;
-      playerName = player2.name
+      playerName = player2.name;
     }
     gameBoard.pickCell(playerName, mark, parseInt(event.target.id));
     if (nextPlayer == 1) {
@@ -182,30 +183,45 @@ const displayController = (function () {
       }
     });
   });
-
+ 
   start.addEventListener("click", function (event) {
-    //sacar name y mark del event target
+    //si son dos jugadores o uno
     event.preventDefault();
-    player1 = Player(singlePlayerName, singlePlayerMark, false);
-    console.log(player1);
-    player2 = Player("pc", pcPlayerMark, true);
-    console.log(player2);
+    if (singlePlayerName != "") {
+      player1 = Player(singlePlayerName, singlePlayerMark, false);
+      console.log(player1);
+      player2 = Player("pc", pcPlayerMark, true);
+      console.log(player2);
+    }else{
+      player1 = Player(document.getElementById('x-name').value, 'x', false);
+      console.log(player1);
+      player2 =Player(document.getElementById('o-name').value, 'o', false);
+      console.log(player2);
+    }
+
     document.getElementById("players").classList.add("no-display");
   });
-  document.getElementById('play-again').addEventListener('click', function(event){
-    event.preventDefault();
-    window.location.reload();
-  })
-  document.getElementById("one-player").addEventListener('click', function(event){
-    event.preventDefault();
-    document.getElementById("info-one").classList.remove("no-display");
-    document.getElementById("start-btn").classList.remove("no-display");
-  });
-  document.getElementById("two-players").addEventListener("click", function(event){
-    event.preventDefault();
-    document.getElementById("info-two").classList.remove("no-display");
-    document.getElementById("start-btn").classList.remove("no-display");
-  });
 
-
+  document
+    .getElementById("play-again")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      window.location.reload();
+    });
+  document
+    .getElementById("one-player")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      document.getElementById("two-players").classList.add("no-display");
+      document.getElementById("info-one").classList.remove("no-display");
+      document.getElementById("start-btn").classList.remove("no-display");
+    });
+  document
+    .getElementById("two-players")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      document.getElementById("one-player").classList.add("no-display");
+      document.getElementById("info-two").classList.remove("no-display");
+      document.getElementById("start-btn").classList.remove("no-display");
+    });
 })();
