@@ -5,35 +5,47 @@
 }
 body{
     text-align: center;
-    background-color: #F3A396;
+    background-color: #83C5BE;
     font-family: 'Amaranth', sans-serif;
+    color: #F0F8F8;
 }
 h1{
     font-size: 3em;
-    color: white;
 }
 
 button {
-    margin: 0 0.1em 0.1em 0;
-    border: 0.2em solid #F3A396;
+    margin: 0.2em 0.5em 0.5em 0.2em;
+    border: 0.2em solid #F0F8F8;
     border-radius:5em;
     padding:0.3em 1.2em;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Roboto',sans-serif;
     font-weight:300;
-    color:#E9573E;
+    color:#2A887E;
     text-align:center;
     transition: all 0.2s;
-    background-color: #FDF6F5;
+    background-color: #F0F8F8;
+    width: fit-content;
 }
 button:hover{
-    border-color:#E9573E;
+    border-color: #2A887E;
+    transform: scale(1.2);
 }
 button:focus{
     outline: none;
 }
-
+input[type='text']{
+    width: 100%;
+    margin: 0.5em;
+}
+.info-players{
+    margin: auto;
+    width: 300px;
+}
+p{
+    margin: 0;
+}
 
 .game{
     display: flex;
