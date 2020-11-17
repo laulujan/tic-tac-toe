@@ -35,10 +35,25 @@ button:hover{
 button:focus{
     outline: none;
 }
+button.play-btn{
+    background-color: #a183c5;
+    color: #F0F8F8;
+    font-size: 1.4em;
+    border: none;
+}
+
 input[type='text']{
     width: 100%;
     margin: 0.5em;
+    height: 2em;
+    border-radius: 5em;
+    border-style: hidden;
 }
+input[type='text']:focus{
+    border: 0.2em solid #2A887E;
+    outline: none;
+}
+
 .info-players{
     margin: auto;
     width: 300px;

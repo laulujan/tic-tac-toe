@@ -20,16 +20,17 @@
             <input
               type="text"
               id="name"
-              placeholder="Enter your name"
+              placeholder=" Enter your name"
               required
             />
-            <p>Choose</p>
+            <p>Choose your Mark</p>
             <input
               type="radio"
               id="one-x"
               value="x"
               name="marks"
               class="radios"
+              
             />
             <label for="x">X</label>
             <input
@@ -38,23 +39,24 @@
               value="o"
               name="marks"
               class="radios"
+             
             />
             <label for="o">O</label>
           </div>
           <div id="info-two" class="info-players no-display">
             <label>Player X</label>
-            <input type="text" id="x-name" placeholder="Enter your name" />
+            <input type="text" id="x-name" placeholder=" Enter your name" />
             <label>Player O</label>
-            <input type="text" id="o-name" placeholder="Enter your name" />
+            <input type="text" id="o-name" placeholder=" Enter your name" />
           </div>
-          <button id="start-btn" class="no-display">Start</button>
+          <button id="start-btn" class="play-btn no-display">Start</button>
         </form>
       </div>
 
       <div id="score" class="info-players no-display">
         <h3>Game Over!</h3>
         <p id="legend"></p>
-        <button id="play-again">Play Again</button>
+        <button id="play-again" class="play-btn">Play Again</button>
       </div>
       <div class="game">
         <div id="grid">

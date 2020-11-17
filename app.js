@@ -137,6 +137,7 @@ const Player = (name, mark, isAI) => {
 
 const displayController = (function () {
   let nextPlayer = 1;
+  let numPlayers;
   const container = document.getElementById("grid");
   container.addEventListener("click", function (event) {
     if (nextPlayer == 1) {
@@ -167,35 +168,54 @@ const displayController = (function () {
   const start = document.getElementById("start-btn");
   const radios = document.getElementsByName("marks");
 
-  let singlePlayerName = "";
-  let singlePlayerMark = "";
-  let pcPlayerMark = "";
+  const playerX = "x";
+  const playerO = "o";
+  let singlePlayerName;
+  let singlePlayerMark = playerX;
+  let pcPlayerMark = playerO;
+  let playerXName;
+  let playerOName;
+  
 
   radios.forEach((r) => {
     r.addEventListener("click", function (event) {
       event.target.setAttribute("checked", "checked");
       singlePlayerMark = event.target.value;
-      singlePlayerName = document.getElementById("name").value;
       if (singlePlayerMark === "x") {
-        pcPlayerMark = "o";
+        pcPlayerMark = playerO;
       } else {
-        pcPlayerMark = "x";
-      }
+        pcPlayerMark =playerX;
+      }  
     });
   });
  
   start.addEventListener("click", function (event) {
     //si son dos jugadores o uno
     event.preventDefault();
-    if (singlePlayerName != "") {
+    singlePlayerName = document.getElementById("name").value;
+    if(singlePlayerName === ''){
+      singlePlayerName = singlePlayerMark;
+    }
+    playerXName = document.getElementById('x-name').value;
+    if(playerXName == ""){
+      playerXName = playerX;
+    }
+
+    playerOName = document.getElementById('o-name').value;
+    if(playerOName == ""){
+      playerOName = playerO;
+    }
+
+    
+    if (numPlayers === 1) {
       player1 = Player(singlePlayerName, singlePlayerMark, false);
       console.log(player1);
       player2 = Player("pc", pcPlayerMark, true);
       console.log(player2);
     }else{
-      player1 = Player(document.getElementById('x-name').value, 'x', false);
+      player1 = Player(playerXName, playerX, false);
       console.log(player1);
-      player2 =Player(document.getElementById('o-name').value, 'o', false);
+      player2 =Player(playerOName, playerO, false);
       console.log(player2);
     }
 
@@ -212,14 +232,18 @@ const displayController = (function () {
     .getElementById("one-player")
     .addEventListener("click", function (event) {
       event.preventDefault();
+      numPlayers = 1;
       document.getElementById("two-players").classList.add("no-display");
+      document.getElementById("one-player").classList.add("no-display");
       document.getElementById("info-one").classList.remove("no-display");
       document.getElementById("start-btn").classList.remove("no-display");
     });
   document
     .getElementById("two-players")
     .addEventListener("click", function (event) {
+      numPlayers = 2;
       event.preventDefault();
+      document.getElementById("two-players").classList.add("no-display");
       document.getElementById("one-player").classList.add("no-display");
       document.getElementById("info-two").classList.remove("no-display");
       document.getElementById("start-btn").classList.remove("no-display");
