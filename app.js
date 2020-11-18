@@ -22,18 +22,19 @@ const gameBoard = (function () {
     isOver = true;
     isTie = status.isTie;
     markWinner = status.winnerMark;
+    if(isTie == true){
+      document.getElementById("legend").textContent = `It's a tie`
+      document.getElementById("score").classList.remove("no-display");
+      return
+    }
     // darwn line
     drawWinner(status.winningCombination);
     //add logic if is tie show gameover section is not show winner
-    if (isTie == true) {
-      document.getElementById("score").classList.remove("no-display");
-    }
     showWinner(playerName);
   };
 
   const robotPickCell = function (playerName, mark) {
-    //calcular espacios vacios para obtener un index
-    checkEmpties();
+    //get random index
     let rndm;
     const getRandomNum = () => {
       const min = Math.ceil(0);
@@ -42,9 +43,8 @@ const gameBoard = (function () {
     };
 
     const checkEmptyCell = () => {
-      if (board.every((ind) => ind != "")) {
-        //aqui va funcion para saber quien gano
-        isTie = true;
+      if(board.every(elem=> elem != "")){
+        return
       }
       rndm = getRandomNum();
       if (board[rndm] != "") {
@@ -55,14 +55,12 @@ const gameBoard = (function () {
     };
     checkEmptyCell();
 
-    console.log({ rndm });
-    console.log({ mark });
     pickCell(playerName, mark, rndm);
-    console.log(board);
+
   };
 
   const gameStatus = function (mark, index) {
-    //agregar los casos en que se termina el juego, sacar el winner, empate etc.
+    //winning cases
     let winningCombo;
     const winningCases = [
       [0, 1, 2],
@@ -74,12 +72,9 @@ const gameBoard = (function () {
       [2, 4, 6],
       [0, 4, 8],
     ];
-    //checar si el contenido en board es igual a mark en los indices del arreglo filtrado
+    //check if selected cell is in one of the winning cases
     winningCombo = winningCases.filter((x) => x.includes(index));
     const areEquals = (elem) => elem == mark;
-
-    console.log({ winningCombo });
-    console.log({ board });
 
     let isGameOver = false;
     let returnMark = "";
@@ -97,11 +92,15 @@ const gameBoard = (function () {
       }
     });
 
+    if(board.every(elem => elem != "") && returnMark == ""){
+      isTie = true;
+      isGameOver = true;
+    }
     return {
       winningCombination: winningCombination,
       isOver: isGameOver,
       winnerMark: returnMark,
-      tie: isTie,
+      isTie: isTie,
     };
   };
 
@@ -116,14 +115,10 @@ const gameBoard = (function () {
   };
 
   const showWinner = (str) => {
-    document.getElementById("legend").textContent = `The winner is: ${str}`
+    document.getElementById("legend").textContent = `The winner is: ${str}`;
     document.getElementById("score").classList.remove("no-display");
   };
-  const checkEmpties = () => {
-    if (board.every((indx) => indx != "")) {
-      document.getElementById("score").classList.remove("no-display");
-    }
-  };
+
 
   return {
     pickCell,
@@ -157,10 +152,6 @@ const displayController = (function () {
     } else {
       nextPlayer = 1;
     }
-    if (gameBoard.isOver) {
-      //hacer una funcion para que pinte quien es el ganador
-      console.log(gameBoard.markWinner);
-    }
   });
 
   let player1 = null;
@@ -190,7 +181,7 @@ const displayController = (function () {
   });
  
   start.addEventListener("click", function (event) {
-    //si son dos jugadores o uno
+    //one or two players
     event.preventDefault();
     singlePlayerName = document.getElementById("name").value;
     if(singlePlayerName === ''){
