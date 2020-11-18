@@ -10,7 +10,13 @@ body{
     color: #F0F8F8;
 }
 h1{
+    font-size: 5em;
+    margin: .2em;
+}
+h3{
+    color: #2A887E;
     font-size: 3em;
+    margin: .1em;
 }
 
 button {
@@ -20,8 +26,7 @@ button {
     padding:0.3em 1.2em;
     box-sizing: border-box;
     text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
+    font-weight:500;
     color:#2A887E;
     text-align:center;
     transition: all 0.2s;
@@ -38,7 +43,7 @@ button:focus{
 button.play-btn{
     background-color: #a183c5;
     color: #F0F8F8;
-    font-size: 1.4em;
+    font-size: 1.2em;
     border: none;
 }
 
@@ -48,6 +53,7 @@ input[type='text']{
     height: 2em;
     border-radius: 5em;
     border-style: hidden;
+    font-size: 1.1em;
 }
 input[type='text']:focus{
     border: 0.2em solid #2A887E;
@@ -60,6 +66,13 @@ input[type='text']:focus{
 }
 p{
     margin: 0;
+    font-size: 1.2em;
+}
+p#legend{
+    font-size: 1.5em;
+}
+label{
+    font-size: 1.2em;
 }
 
 .game{
@@ -76,16 +89,20 @@ p{
 }
 
 .bottom{
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid  #F0F8F8;
 }
 .right{
-    border-right: 4px solid white;
-}
-
-.winner{
-    color: red;
+    border-right: 4px solid #F0F8F8;
 }
 
 .no-display{
     display: none;
+}
+
+.cell{
+    font-size: 5em;
+    color: #2A887E;
+}
+.winner{
+    color: #a183c5;
 }

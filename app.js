@@ -116,7 +116,7 @@ const gameBoard = (function () {
   };
 
   const showWinner = (str) => {
-    document.getElementById("legend").textContent = "The winner is " + str;
+    document.getElementById("legend").textContent = `The winner is: ${str}`
     document.getElementById("score").classList.remove("no-display");
   };
   const checkEmpties = () => {
@@ -210,7 +210,7 @@ const displayController = (function () {
     if (numPlayers === 1) {
       player1 = Player(singlePlayerName, singlePlayerMark, false);
       console.log(player1);
-      player2 = Player("pc", pcPlayerMark, true);
+      player2 = Player("Computer", pcPlayerMark, true);
       console.log(player2);
     }else{
       player1 = Player(playerXName, playerX, false);
